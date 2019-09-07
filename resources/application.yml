@@ -13,3 +13,51 @@ logrus:
   maxAge: 2592000
   # 24 * 60 * 60 一天
   rotationTime: 86400
+
+# mysql配置
+mysql:
+  driverName: mysql
+  ipAddr: 47.101.155.215
+  port: 3306
+  username: root
+  password: admin
+  database: registergo
+  maxOpenConn: 100
+  maxIdeConn: 100
+  # 7 * 24 * 60 * 60
+  connMaxLifetime: 604800
+
+# redis配置
+redis:
+  redisConfig:
+    - {addr: 192.168.56.131:6379, password: "", db: 0, maxRetries: 10, poolSize: 1000, minIdleConns: 1000, maxConnAge: 604800, readOnly: false}
+    - {addr: 192.168.56.132:6379, password: "", db: 0, maxRetries: 10, poolSize: 1000, minIdleConns: 1000, maxConnAge: 604800, readOnly: true}
+    - {addr: 192.168.56.132:6380, password: "", db: 0, maxRetries: 10, poolSize: 1000, minIdleConns: 1000, maxConnAge: 604800, readOnly: true}
+sentinel:
+  addrs:
+    - 192.168.56.131:26379
+    - 192.168.56.132:26379
+    - 192.168.56.132:26380
+  masterName: mymaster
+  readOny: false
+  password: ""
+redisCluster:
+  addrs:
+    - 192.168.56.131:7000
+    - 192.168.56.131:7001
+    - 192.168.56.131:7002
+    - 192.168.56.132:7003
+    - 192.168.56.132:7005
+    - 192.168.56.132:7006
+  readOnly: true
+  poolSize: 1000
+  minIdleConns: 1000
+
+# rabbitmq的配置
+rabbit:
+  ipAddr: 192.168.56.130
+  port: 5672
+  # vhost命名不要带 /, 如/hmall,这样命名会有异常
+  vhost: hmall
+  username: admin
+  password: admin
